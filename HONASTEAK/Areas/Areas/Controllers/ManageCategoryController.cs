@@ -1,13 +1,14 @@
-﻿using HONASTEAK.Models;
+﻿using HONASTEAK.Controllers;
+using HONASTEAK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HONASTEAK.Areas.Admin.Controllers
+namespace HONASTEAK.Areas.Areas.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class ManageCategoryController : BaseController<Category>
     {
         // GET: Admin/ManageCategory
@@ -22,13 +23,13 @@ namespace HONASTEAK.Areas.Admin.Controllers
             List<string> errors = new List<string>();
             try
             {
-                var categoryname = formCollection["categoryname"];
+                var name = formCollection["name"];
                 var slug = formCollection["slug"];
                 var description = formCollection["description"];
                 var parentid = formCollection["parentid"];
                 var status = formCollection["status"];
                 var checkSlug = Context.Categories.Count(x => x.Slug == slug);
-                if (string.IsNullOrEmpty(categoryname))
+                if (string.IsNullOrEmpty(name))
                 {
                     errors.Add("Chưa nhập tên danh mục");
                 }
@@ -74,18 +75,18 @@ namespace HONASTEAK.Areas.Admin.Controllers
             List<string> errors = new List<string>();
             try
             {
-                var categoryid = formCollection["categoryid"];
-                var categoryname = formCollection["categoryname"];
+                var id = formCollection["id"];
+                var name = formCollection["name"];
                 var slug = formCollection["slug"];
                 var description = formCollection["description"];
                 var status = formCollection["status"];
                 var checkSlug = Context.Categories.Count(x => x.Slug == slug);
                 var getCategoryContainsSlug = Context.Categories.FirstOrDefault(x => x.Slug == slug);
-                if (string.IsNullOrEmpty(categoryname))
+                if (string.IsNullOrEmpty(name))
                 {
                     errors.Add("Chưa nhập tên danh mục");
                 }
-                if (checkSlug > 0 && getCategoryContainsSlug.CategoryId != Convert.ToInt32(categoryid))
+                if (checkSlug > 0 && getCategoryContainsSlug.Id != Convert.ToInt32(id))
                 {
                     errors.Add("Slug đã tồn tại");
                 }
@@ -96,7 +97,7 @@ namespace HONASTEAK.Areas.Admin.Controllers
                 if (errors.Count == 0)
                 {
                     var category = GetById(Int32.Parse(formCollection["Id"]));
-                    category.CategoryName = categoryname;
+                    category.Name = name;
                     category.Slug = slug;
                     category.Status = status;
                     category.Description = description;
