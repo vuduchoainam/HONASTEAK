@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace HONASTEAK.Areas.Admin
+namespace HONASTEAK.Areas.Areas
 {
-    public class AdminAreaRegistration : AreaRegistration 
+    public class AreasAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Admin";
+                return "Areas";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Admin_default",
-                "Admin/{controller}/{action}/{id}",
+                "Areas_default",
+                "Areas/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
