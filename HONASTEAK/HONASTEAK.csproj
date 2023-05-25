@@ -178,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Areas\AreasAreaRegistration.cs" />
+    <Compile Include="Areas\Areas\Controllers\ManageAccountController.cs" />
     <Compile Include="Areas\Areas\Controllers\ManageCategoryController.cs" />
     <Compile Include="Areas\Areas\Controllers\ManageProductController.cs" />
     <Compile Include="Areas\Areas\Controllers\ManageRoleController.cs" />
@@ -186,7 +187,6 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Data\ApplicationUser.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
     <Compile Include="Data\Repository.cs" />
@@ -202,22 +202,25 @@
     <Compile Include="Migrations\202305231619432_addTableCategory.designer.cs">
       <DependentUpon>202305231619432_addTableCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305250737362_updatetableuser.cs" />
+    <Compile Include="Migrations\202305250737362_updatetableuser.designer.cs">
+      <DependentUpon>202305250737362_updatetableuser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetUserRoles.cs" />
-    <Compile Include="Models\Booking.cs" />
-    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Entity\AspNetUserRoles.cs" />
+    <Compile Include="Models\Entity\Booking.cs" />
+    <Compile Include="Models\Entity\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Entity\Invoice.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\InvoiceDetail.cs" />
-    <Compile Include="Models\OptionProduct.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\PropertyProduct.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Staff.cs" />
-    <Compile Include="Models\Table.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Entity\InvoiceDetail.cs" />
+    <Compile Include="Models\Entity\OptionProduct.cs" />
+    <Compile Include="Models\Entity\Product.cs" />
+    <Compile Include="Models\Entity\PropertyProduct.cs" />
+    <Compile Include="Models\Entity\Role.cs" />
+    <Compile Include="Models\Entity\Staff.cs" />
+    <Compile Include="Models\Entity\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -286,6 +289,8 @@
     <Content Include="Content\css\icon_fonts\font\ElegantIcons.woff" />
     <Content Include="Content\css\icon_fonts\font\food.woff" />
     <Content Include="Content\css\icon_fonts\font\Glyphter.woff" />
+    <Content Include="Areas\Areas\Views\ManageAccount\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\Account\Login.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -376,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305231619432_addTableCategory.resx">
       <DependentUpon>202305231619432_addTableCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305250737362_updatetableuser.resx">
+      <DependentUpon>202305250737362_updatetableuser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
