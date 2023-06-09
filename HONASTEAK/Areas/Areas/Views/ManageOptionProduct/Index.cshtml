@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HONASTEAK.Models.Category>
+﻿@model IEnumerable<HONASTEAK.Models.OptionProduct>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
@@ -10,26 +10,15 @@
     {
         return active == "1" ? "<span class='btn btn-success btn-xs'>ON</span>" : "<span class='btn btn-danger btn-xs'>OFF</span>";
     }
-    public string ParentCategory(int parentId)
-    {
-        foreach (var item in Model)
-        {
-            if (item.Id == parentId)
-            {
-                return item.Name;
-            }
-        }
-        return "Danh mục cha";
-    }
 }
 @Html.Partial("ErrorsAlert")
 <div class="modal fade" id="create_modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            @using (Html.BeginForm("Create", "ManageCategory", FormMethod.Post))
+            @using (Html.BeginForm("Create", "ManageOptionProduct", FormMethod.Post))
             {
                 <div class="modal-header">
-                    <h4 class="modal-title">Tạo danh mục mới</h4>
+                    <h4 class="modal-title">Tạo tùy chọn sản phẩm mới</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -41,20 +30,15 @@
                             <input type="text" class="form-control" name="name" id="name" onchange="getSlug();">
                         </div>
                         <div class="form-group">
-                            <label>Slug</label>
-                            <input type="text" class="form-control" name="slug" id="slug">
+                            <label>Giá</label>
+                            <input type="number" class="form-control" name="price" id="price" value="1000">
                         </div>
                         <div class="form-group">
-                            <label>Mô tả</label>
-                            <textarea rows="5" class="form-control" name="description" id="description"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Danh mục cha</label>
-                            <select class="form-control" name="parentid" id="parentid">
-                                <option value="0">Danh mục cha</option>
-                                @foreach (var item in Model)
+                            <label>Sản phẩm</label>
+                            <select class="form-control" name="product_id" id="product_id">
+                                @foreach (var product in ViewBag.Product)
                                 {
-                                    <option value="@item.Id">@item.Name</option>
+                                    <option value="@product.Id">@product.Name</option>
                                 }
                             </select>
                         </div>
@@ -78,7 +62,7 @@
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">
-                    <i class="fa fa-list"></i> DANH SÁCH DANH MỤC <a data-toggle="modal" data-target="#create_modal"><i class="fa fa-plus-circle"></i></a>
+                    <i class="fa fa-list"></i> DANH SÁCH TÙY CHỌN SẢN PHẨM <a data-toggle="modal" data-target="#create_modal"><i class="fa fa-plus-circle"></i></a>
                 </h3>
             </div>
             <div class="card-body">
@@ -89,9 +73,8 @@
                                 <th>Hành động</th>
                                 <th>Id</th>
                                 <th>Tên</th>
-                                <th>Slug</th>
-                                <th>Mô tả</th>
-                                <th>Danh mục cha</th>
+                                <th>Giá</th>
+                                <th>Sản phẩm</th>
                                 <th>Trạng thái</th>
                                 <th>CreatedAt</th>
                                 <th>UpdatedAt</th>
@@ -102,7 +85,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <a href="@Url.Action("Edit", "ManageCategory", new { id = item.Id })" class="btn btn-primary btn-sm">
+                                        <a href="@Url.Action("Edit", "ManageOptionProduct", new { id = item.Id })" class="btn btn-primary btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <a href="#" class="btn btn-danger btn-sm" onclick="del('@item.Id')">
@@ -111,9 +94,8 @@
                                     </td>
                                     <td>@Html.DisplayFor(modelItem => item.Id)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Slug)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                                    <td>@ParentCategory(item.ParentId)</td>
+                                    <td>@item.Price.ToString("N0")đ</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Product.Name)</td>
                                     <td>@Html.Raw(NorActive(item.Status))</td>
                                     <td>@Html.DisplayFor(modelItem => item.CreatedAt)</td>
                                     <td>@Html.DisplayFor(modelItem => item.UpdatedAt)</td>
@@ -142,12 +124,19 @@
     function del(id) {
         if (confirm("Bạn chắc chắn muốn xóa?")) {
             $.ajax({
-                url: "@Url.Action("Delete", "ManageCategory")",
+                url: "@Url.Action("Delete", "ManageOptionProduct")",
                 type: "POST",
                 data: { id: id },
-                success: function (response) {if (response.success) {    alert(response.message);    location.reload();} else {    alert(response.message);}
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
                 },
-                error: function (xhr, status, error) {alert(error);
+                error: function (xhr, status, error) {
+                    alert(error);
                 }
             });
         }

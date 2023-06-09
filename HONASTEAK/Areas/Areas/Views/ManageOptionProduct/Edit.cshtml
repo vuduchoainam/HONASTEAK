@@ -1,23 +1,8 @@
-﻿@model HONASTEAK.Models.Category
+﻿@model HONASTEAK.Models.OptionProduct
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Property Product";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-}
-
-<h2>Edit</h2>
-@functions{
-    public string ParentCategory(int parentId)
-    {
-        foreach (var item in ViewBag.Categories)
-        {
-            if (item.Id == parentId)
-            {
-                return item.Name;
-            }
-        }
-        return "Danh mục cha";
-    }
 }
 @Html.Partial("ErrorsAlert")
 <div class="row">
@@ -25,7 +10,7 @@
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">
-                    <i class="fa fa-edit"></i> CHỈNH SỬA DANH MỤC: @Model.Name
+                    <i class="fa fa-edit"></i> CHỈNH SỬA TÙY CHỌN SẢN PHẨM: @Model.Product.Name (@Model.Name)
                 </h3>
             </div>
             @using (Html.BeginForm())
@@ -38,17 +23,17 @@
                         <input class="form-control" id="name" name="name" type="text" value="@Html.DisplayFor(item => item.Name)" onchange="getSlug()">
                     </div>
                     <div class="form-group">
-                        <label>Slug</label>
-                        <input class="form-control" id="slug" name="slug" type="text" value="@Html.DisplayFor(item => item.Slug)">
+                        <label>Giá</label>
+                        <input class="form-control" id="price" name="price" type="text" value="@Model.Price.ToString("N0")">
                     </div>
                     <div class="form-group">
-                        <label>Mô tả</label>
-                        <textarea class="form-control" id="description" name="description" rows="3">@Html.DisplayFor(item => item.Description)</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Danh mục cha</label>
-                        <select class="form-control" id="parent_id" name="parent_id">
-                            <option value="@Html.DisplayFor(item => item.ParentId)">@ParentCategory(Model.ParentId)</option>
+                        <label>Sản phẩm</label>
+                        <select class="form-control" name="product_id">
+                            <option value="@Html.DisplayFor(model => model.Product.Id)">Giữ nguyên: @Html.DisplayFor(model => model.Product.Name)</option>
+                            @foreach (var product in ViewBag.Product)
+                            {
+                                <option value="@product.Id">@product.Name</option>
+                            }
                         </select>
                     </div>
                     <div class="form-group">
@@ -85,4 +70,3 @@
         $('#slug').val(result.toLowerCase());
     }
 </script>
-
