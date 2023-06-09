@@ -11,17 +11,17 @@ using System.Web.Mvc;
 
 namespace HONASTEAK.Areas.Areas.Controllers
 {
-    //[Authorize]
-    public class AccountController : Controller
+    [Authorize(Roles = "Admin")]
+    public class ManageAccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db = new ApplicationDbContext();
-        public AccountController()
+        public ManageAccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageAccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -66,24 +66,6 @@ namespace HONASTEAK.Areas.Areas.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Delete(string username)
-        //{
-        //    var user = UserManager.FindByName(username);
-        //    if (user != null)
-        //    {
-        //        var result = UserManager.Delete(user);
-        //        if (result.Succeeded)
-        //        {
-        //            return Json(new { success = true });
-        //        }
-        //        else
-        //        {
-        //            return Json(new { success = false, error = "Không thể xóa người dùng." });
-        //        }
-        //    }
-
-        //    return Json(new { success = false, error = "Người dùng không tồn tại." });
-        //}
         public async Task<ActionResult> Delete(string username)
         {
             var user = await UserManager.FindByNameAsync(username);

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace HONASTEAK.Areas.Areas.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ManageCategoryController : BaseController<Category>
     {
         // GET: Admin/ManageCategory

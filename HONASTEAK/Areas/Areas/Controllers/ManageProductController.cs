@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace HONASTEAK.Areas.Areas.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ManageProductController : BaseController<Product>
     {
         private readonly IRepository<Category> _categoryRepository;
