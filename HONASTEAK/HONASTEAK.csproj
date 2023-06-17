@@ -305,6 +305,8 @@
     <Content Include="Content\layout\Admin\dist\js\pages\dashboard.js" />
     <Content Include="Content\layout\Admin\dist\js\pages\dashboard2.js" />
     <Content Include="Content\layout\Admin\dist\js\pages\dashboard3.js" />
+    <Content Include="Content\layout\Admin\images\avatar.png" />
+    <Content Include="Content\layout\Admin\images\bg_call_section.png" />
     <Content Include="Content\layout\Admin\js\ajax.js" />
     <Content Include="Content\layout\Admin\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Content\layout\Admin\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
@@ -2326,7 +2328,6 @@
     <Content Include="Content\layout\Admin\plugins\summernote\summernote.js.map" />
     <Content Include="Content\layout\Admin\plugins\summernote\summernote.min.js.map" />
     <Content Include="Content\layout\Admin\plugins\toastr\toastr.js.map" />
-    <Content Include="Areas\Areas\Views\ManageAccount\Login.cshtml" />
     <Content Include="Areas\Areas\Views\ManageOptionProduct\Index.cshtml" />
     <Content Include="Areas\Areas\Views\ManageOptionProduct\Edit.cshtml" />
     <Content Include="Areas\Areas\Views\ManagePropertyProduct\Index.cshtml" />
@@ -2379,16 +2380,17 @@
     <Content Include="Views\Shared\_Layout_Admin.cshtml" />
     <Content Include="Views\Shared\ErrorsAlert.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Collection\View.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Category\Collection.cshtml" />
+    <Content Include="Views\Home\Collection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Areas\Data\" />
+    <Folder Include="Areas\Areas\Views\ManageAccount\" />
     <Folder Include="Areas\Areas\Views\Shared\" />
-    <Folder Include="Content\layout\Admin\images\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Category\" />
-    <Folder Include="Views\Collection\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

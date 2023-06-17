@@ -1,9 +1,11 @@
 ﻿@model HONASTEAK.Models.Product
 
 @{
-    Page.Title = Model.Name;
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Details</h2>
 <script type="text/javascript">
     $(document).ready(function () {
         $('input[name="propertyId"]').eq(0).prop('checked', true);
@@ -11,7 +13,6 @@
             e.preventDefault();
             var productId = $('#productId').val();
             var propertyId = $('input[name="propertyId"]:checked').val();
-
             var quantity = $('#quantity').val();
             var optionProductIds = [];
             $('input[type="checkbox"]:checked').each(function () {
@@ -49,6 +50,7 @@
                                 <img src="@Model.Image" alt="@Model.Name">
                             </div>
                         </div>
+
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
                         <input type="hidden" id="productId" value="@Model.Id" />
@@ -111,14 +113,7 @@
                 </div>
             </div>
         </section>
-        <section class="default-section wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
-            <div class="container">
-                <div class="title text-center">
-                    <h3 class="text-coffee">Sản Phẩm Liên Quan</h3>
-                </div>
-              
-            </div>
-        </section>
+       
     </div>
 </main>
 <script type="text/javascript">

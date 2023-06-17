@@ -1,112 +1,108 @@
 ﻿@model IEnumerable<HONASTEAK.Models.Product>
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-<main>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Slug)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedAt)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <main>
+        <div style="height:100px"></div>
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Slug)
-                </td>
-                <td>
-                    <a href="/Product/@Html.DisplayFor(modelItem => item.Slug)">@Html.DisplayFor(modelItem => item.Name)</a>
-                </td>
-                <td>
-                    @item.Price.ToString("N0")đ
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedAt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedAt)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    <button class="btn btn-primary add-to-cart" data-product-id="@item.Id">Add to Cart</button>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Slug)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdatedAt)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Slug)
+                    </td>
+                    <td>
+                        <a href="/Product/@Html.DisplayFor(modelItem => item.Slug)">@Html.DisplayFor(modelItem => item.Name)</a>
+                    </td>
+                    <td>
+                        @item.Price.ToString("N0")đ
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedAt)
+                    </td>
+                  
+                </tr>
+            }
 
-    <script>
-        $(document).ready(function () {
-            $('.add-to-cart').click(function (e) {
-                e.preventDefault();
-                var productId = $(this).data('product-id');
-                var quantity = 1;
-                $.ajax({
-                    url: '/Cart/AddToCart',
-                    type: 'POST',
-                    data: { productId: productId, quantity: quantity },
-                    success: function (data) {
-                        alert("Thêm thành công");
-                        // Thực hiện các thay đổi trên giao diện để hiển thị giỏ hàng mới nhất
-                    },
-                    error: function () {
-                        alert('An error occurred while adding to cart.');
-                    }
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                $('.add-to-cart').click(function (e) {
+                    e.preventDefault();
+                    var productId = $(this).data('product-id');
+                    var quantity = 1;
+                    $.ajax({
+                        url: '/Cart/AddToCart',
+                        type: 'POST',
+                        data: { productId: productId, quantity: quantity },
+                        success: function (data) {
+                            alert("Thêm thành công");
+                            // Thực hiện các thay đổi trên giao diện để hiển thị giỏ hàng mới nhất
+                        },
+                        error: function () {
+                            alert('An error occurred while adding to cart.');
+                        }
+                    });
                 });
             });
-        });
-    </script>
+        </script>
 
 
-</main>
+    </main>
+
+
