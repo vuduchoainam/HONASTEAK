@@ -87,7 +87,7 @@
                                             @foreach (var option in item.Options)
                                             {
                                                 <div class="col-lg-1"></div>
-                                                optionIds.Add(option.Id);
+                                                optionIds.Add(option.Id.ToString());
                                                 <div class="col-lg-7">@option.Name</div>
                                                 <div class="col-lg-4 text-right">@option.Price.ToString("N0")<span>đ</span></div>
                                             }
