@@ -30,8 +30,8 @@ namespace HONASTEAK.Controllers
             catch(Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                //UnitOfWork.Rollback();
-                //throw;
+                UnitOfWork.Rollback();
+                throw;
             }
         }
         public IEnumerable<T> GetAll()

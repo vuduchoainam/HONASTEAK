@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202306190157217_updateTableOptionP.designer.cs">
       <DependentUpon>202306190157217_updateTableOptionP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306190250555_updateTablePropertyP.cs" />
+    <Compile Include="Migrations\202306190250555_updateTablePropertyP.designer.cs">
+      <DependentUpon>202306190250555_updateTablePropertyP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\ApplicationUser.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
@@ -2470,6 +2474,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306190157217_updateTableOptionP.resx">
       <DependentUpon>202306190157217_updateTableOptionP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306190250555_updateTablePropertyP.resx">
+      <DependentUpon>202306190250555_updateTablePropertyP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
