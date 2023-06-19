@@ -92,23 +92,6 @@
                         </ul>
                     </li>
                     <li class="submenu">
-                        <a href="#0" class="show-submenu">Khuyến Mãi</a>
-                        <ul>
-                            <li><a href="html_rtl/index.html">RLT Version <strong>New!</strong></a></li>
-                            <li><a href="404.html">404 Error</a></li>
-                            <li><a href="help.html">Help and Faq</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="leave-review.html">Leave a review</a></li>
-                            <li><a href="user-logged-1.html">User Logged 1</a></li>
-                            <li><a href="user-logged-2.html">User Logged 2</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="coming_soon/index.html">Coming Soon</a></li>
-                            <li><a href="account.html">Sign Up</a></li>
-                            <li><a href="icon-pack-1.html">Icon Pack 1</a></li>
-                            <li><a href="icon-pack-2.html">Icon Pack 2</a></li>
-                        </ul>
-                    </li>
-                    <li class="submenu">
                         <a href="@Url.Action("Index","Blog")" class="show-submenu">Blog</a>
                     </li>
                     <li class="submenu">
@@ -119,20 +102,9 @@
                         </a>
                         @*<a href="#0" class="show-submenu">Giới Thiệu</a>*@
                     </li>
-                    @if (@User.Identity.IsAuthenticated)
-                    {
-                        if (User.IsInRole("Admin"))
-                        {
-                            <li><a href="@Url.Action("Index","ManageRole", new { area = "Areas" })">Quản lý admin</a></li>
-                        }
-                        <li><a href="@Url.Action("Logoff","Account")">Đăng Xuất</a></li>
-
-                    }
-                    else
-                    {
-                        <li><a href="@Url.Action("Login","Account")">Đăng Nhập</a></li>
-                    }
-
+                    <li>
+                        <a href="@Url.Action("Login","Account")">Đăng Nhập</a>
+                    </li>
 
                 </ul>
             </nav>
