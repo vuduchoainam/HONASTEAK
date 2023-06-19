@@ -4,8 +4,6 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Details</h2>
 <script type="text/javascript">
     $(document).ready(function () {
         $('input[name="propertyId"]').eq(0).prop('checked', true);
@@ -39,7 +37,9 @@
         });
     });
 </script>
+
 <main>
+    <div style="height:100px"></div>
     <div class="main-part">
         <section class="default-section shop-single pad-bottom-remove">
             <div class="container">
@@ -47,10 +47,9 @@
                     <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
                         <div class="slider slider-for slick-shop">
                             <div>
-                                <img src="@Model.Image" alt="@Model.Name">
+                                <img src="@Model.Image" alt="@Model.Name" style=" width: 70%; margin-left: 100px; border-radius: 5px;">
                             </div>
                         </div>
-
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
                         <input type="hidden" id="productId" value="@Model.Id" />
@@ -96,15 +95,14 @@
         </section>
 
         <section class="default-section comment-review-tab bg-grey v-pad-remove wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
-            <div class="container">
+            <div class="container" style="margin-top:50px">
                 <div class="tab-part">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
-                            <a href="#description" aria-controls="description" role="tab" data-toggle="tab" aria-expanded="true">MÔ TẢ</a>
-                        </li>
-                    </ul>
+                    <p style="text-align:center; font-size:30px">
+                        MÔ TẢ
+                    </p>
+                    <hr />
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="description">
+                        <div role="tabpanel" class="tab-pane active" id="description" >
                             <p>
                                 @Model.Description
                             </p>
