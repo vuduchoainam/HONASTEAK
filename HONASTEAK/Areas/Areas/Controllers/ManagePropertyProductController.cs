@@ -18,6 +18,7 @@ namespace HONASTEAK.Areas.Areas.Controllers
             _productRepository = new Repository<Product>(Context);
         }
         // GET: Admin/ManagePropertyProduct
+
         public ActionResult Index()
         {
             var product = _productRepository.GetAll().ToList();
@@ -81,12 +82,19 @@ namespace HONASTEAK.Areas.Areas.Controllers
             {
                 var id = formCollection["id"];
                 var name = formCollection["name"];
+                //var slug = formCollection["slug"];
                 var price = formCollection["price"];
                 var status = formCollection["status"];
+                //var checkSlug = Context.Products.Count(x => x.Slug == slug);
+                //var getPropertyProductContainsSlug = Context.Products.FirstOrDefault(x => x.Slug == slug);
                 if (string.IsNullOrEmpty(name))
                 {
                     errors.Add("Chưa nhập tên thuộc tính");
                 }
+                //if (checkSlug > 0 && getPropertyProductContainsSlug.Id != Convert.ToInt32(id))
+                //{
+                //    errors.Add("Slug đã tồn tại");
+                //}
                 if (Convert.ToDecimal(price) < 1000 || string.IsNullOrEmpty(price))
                 {
                     errors.Add("Nhập giá ít nhất là 1000đ");
@@ -97,6 +105,7 @@ namespace HONASTEAK.Areas.Areas.Controllers
                     var propertyProduct = GetById(Int32.Parse(formCollection["Id"]));
                     propertyProduct.Name = name;
                     propertyProduct.Product = product;
+                    //propertyProduct.Slug = slug;
                     propertyProduct.Price = Convert.ToDecimal(price); // ép kiểu từ string về decimal
                     propertyProduct.Status = status;
                     propertyProduct.UpdatedAt = DateTime.Now;

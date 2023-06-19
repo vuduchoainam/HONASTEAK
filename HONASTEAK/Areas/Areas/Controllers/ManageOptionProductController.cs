@@ -13,11 +13,14 @@ namespace HONASTEAK.Areas.Areas.Controllers
     public class ManageOptionProductController : BaseController<OptionProduct>
     {
         private readonly IRepository<Product> _productRepository;
+
+
         public ManageOptionProductController()
         {
             _productRepository = new Repository<Product>(Context);
         }
         // GET: Admin/ManageOptionProduct
+
         public ActionResult Index()
         {
             var product = _productRepository.GetAll().ToList();
@@ -47,6 +50,7 @@ namespace HONASTEAK.Areas.Areas.Controllers
                     var Product_Id = Int32.Parse(formCollection["product_id"]);
                     optionProduct.Product = _productRepository.GetById(Product_Id);
                     Add(optionProduct);
+
                 }
             }
             catch (Exception ex)
@@ -81,12 +85,19 @@ namespace HONASTEAK.Areas.Areas.Controllers
             {
                 var id = formCollection["id"];
                 var name = formCollection["name"];
+                //var slug = formCollection["slug"];
                 var price = formCollection["price"];
                 var status = formCollection["status"];
+                //var checkSlug = Context.Products.Count(x => x.Slug == slug);
+                //var getOptionProductContainsSlug = Context.Products.FirstOrDefault(x => x.Slug == slug);
                 if (string.IsNullOrEmpty(name))
                 {
                     errors.Add("Chưa nhập tên danh mục");
                 }
+                //if (checkSlug > 0 && getOptionProductContainsSlug.Id != Convert.ToInt32(id))
+                //{
+                //    errors.Add("Slug đã tồn tại");
+                //}
                 if (Convert.ToDecimal(price) < 1000 || string.IsNullOrEmpty(price))
                 {
                     errors.Add("Nhập giá ít nhất là 1000đ");
@@ -95,6 +106,7 @@ namespace HONASTEAK.Areas.Areas.Controllers
                 {
                     var optionProduct = GetById(Int32.Parse(formCollection["Id"]));
                     optionProduct.Name = name;
+                    //optionProduct.Slug = slug;
                     optionProduct.Price = Convert.ToDecimal(price); // ép kiểu từ string về decimal
                     optionProduct.Status = status;
                     optionProduct.UpdatedAt = DateTime.Now;
@@ -123,5 +135,5 @@ namespace HONASTEAK.Areas.Areas.Controllers
             Remove(optionProduct);
             return Json(new { success = true, message = "Xóa tùy chọn thành công" });
         }
-    }
+    }   
 }

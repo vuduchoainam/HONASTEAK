@@ -4,6 +4,7 @@
     ViewBag.Title = "Edit Product";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
+
 @functions{
     public string ParentCategory(int parentId)
     {
@@ -41,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label>Mô tả</label>
-                        <textarea class="form-control" id="description" name="description" rows="3">@Html.DisplayFor(item => item.Description)</textarea>
+                        <textarea class="form-control" validateRequest="false" id="description" name="description" rows="3">@Html.DisplayFor(item => item.Description)</textarea>
                     </div>
                     <div class="form-group">
                         <label>Giá</label>
@@ -136,3 +137,4 @@
         }
     });
 </script>
+
