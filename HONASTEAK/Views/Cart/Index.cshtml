@@ -48,7 +48,7 @@
                     </ul>
                 </div>
                 <div class="shop-cart-list wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                    <table class="shop-cart-table">
+                    <table class="shop-cart-table table">
                         <thead>
                             <tr>
                                 <th>SẢN PHẨM</th>
@@ -91,7 +91,7 @@
                                     <td>
                                         <div class="price-textbox">
                                             <span class="minus-text" onclick="minusQuantity('@item.Id')"><i class="glyphicon glyphicon-minus"></i></span>
-                                            <input type="text" id="quantity_@item.Id" value="@item.Quantity" onchange="updateCart('@item.Id')" pattern="[0-9]">
+                                            <input type="number" id="quantity_@item.Id" value="@item.Quantity" onchange="updateCart('@item.Id')" pattern="[0-9]">
                                             <span class="plus-text" onclick="plusQuantity('@item.Id')"><i class="glyphicon glyphicon-plus"></i></span>
                                         </div>
                                     </td>
@@ -100,7 +100,7 @@
                                         @(((item.Price + item.PropertyProduct.Price + item.Options.Sum(option => option.Price)) * item.Quantity).ToString("N0"))đ
                                     </td>
                                     <td class="product-remove">
-                                        <button class="remove" data-item-cart-id="@item.Id">×</button>
+                                        <button class="remove btn btn-danger" data-item-cart-id="@item.Id">×</button>
                                     </td>
                                 </tr>
                             }
@@ -112,14 +112,14 @@
                                 <input type="text" name="txt" placeholder="Cupon Code">
                             </div>
                             <a href="#" class="btn-medium btn-dark-coffee">Apply Coupon</a>*@
-                        <a href="#" class="clear btn-medium btn-danger">Xóa Giỏ Hàng</a>
+                        <a href="#" class="clear btn-medium btn btn-danger">Xóa Giỏ Hàng</a>
                         @*<a href="#" class="btn-medium btn-skin pull-right">Cập Nhật Giỏ Hàng</a>*@
                     </div>
                 </div>
                 <div class="cart-total wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
-                    <div class="cart-total-title">
+                    @*<div class="cart-total-title">
                         <h5>TỔNG CỘNG</h5>
-                    </div>
+                    </div>*@
                     @*<div class="product-cart-total">
                             <small>Total products</small>
                             <span>@Model.Sum(item => (item.Price + item.PropertyProduct.Price + item.Options.Sum(option => option.Price)) * item.Quantity).ToString("N0")đ</span>
@@ -129,10 +129,11 @@
                             <span>$15.00</span>
                         </div>*@
                     <div class="grand-total">
+                        <br />
                         <h5>TỔNG: <span>@Model.Sum(item => (item.Price + item.PropertyProduct.Price + item.Options.Sum(option => option.Price)) * item.Quantity).ToString("N0")đ</span></h5>
                     </div>
                     <div class="proceed-check">
-                        <a href="@Url.Action("CheckOut","Invoice")" class="btn-primary-gold btn-medium">THANH TOÁN</a>
+                        <a href="@Url.Action("CheckOut","Invoice")" class="btn-primary-gold btn-medium btn btn-success">THANH TOÁN</a>
                     </div>
                 </div>
             </div>
