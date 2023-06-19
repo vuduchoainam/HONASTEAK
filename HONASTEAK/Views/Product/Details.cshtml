@@ -23,6 +23,7 @@
                 data: { productId: productId, quantity: quantity, optionProductIds: optionProductIds, propertyId: propertyId },
                 success: function (data) {
                     if (data.status == true) {
+                        getTotalCart();
                         alert('Thêm thành công!');
                     } else {
                         alert('Có lỗi xảy ra khi thêm vào giỏ hàng!');
