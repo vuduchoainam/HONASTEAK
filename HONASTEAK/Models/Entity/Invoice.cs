@@ -11,6 +11,7 @@ namespace HONASTEAK.Models
         [Key]
         public int Id { get; set; }
         public string Code { get; set; }
+        public string UserId { get; set; }
         public Table Table { get; set; }
         public string CustomerName { get; set; }
         public string PhoneNumber { get; set; }

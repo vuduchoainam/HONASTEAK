@@ -1,0 +1,80 @@
+﻿@model HONASTEAK.Models.Invoice
+
+@{
+    ViewBag.Title = "SearchOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-layout">
+    <div class="wrapper-row pd-page">
+        <div class="container-fluid">
+            <div class="heading-page">
+                <div class="header-page">
+                    <div style="text-align:center"><h1>Tra cứu đơn hàng</h1></div>
+                </div>
+            </div>
+            @if (Model != null)
+            {
+                <div class="row wrapbox-content-cart">
+                    <div class="col-md-12 col-sm-4 col-xs-12 sidebarCart-sticky">
+                        <div class="sidebox-order">
+                            <div class="sidebox-order-inner">
+                                <div class="sidebox-order_title">
+                                    <h3>Thông tin đơn hàng</h3>
+                                </div>
+                                <div class="sidebox-order_text">
+                                    <div class="col-md-6 col-sm-4 col-xs-12">
+                                        <p>Mã đơn hàng: <b>@Model.Code</b></p>
+                                        <p>Tên người nhận: <b>@Model.CustomerName</b></p>
+                                        <p>Số điện thoại: <b>@Model.PhoneNumber</b></p>
+                                        <p>Địa chỉ: <b>@Model.Address</b></p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p>Phương thức thanh toán: @Model.Payment</p>
+                                        <p>Tổng tiền: <b>@Model.Total.ToString("N0")đ</b></p>
+                                        <p>Ghi chú: <b>@Model.Note</b></p>
+                                        <p>Thời gian tạo: <b>@Model.CreatedAt</b></p>
+                                    </div>
+                                    <div class="col-md-2 col-sm-4 col-xs-12" style="text-align: center">
+                                        <img src="https://chart.googleapis.com/chart?chs=130x130&cht=qr&chl=http://@Request.Url.Host/Invoice/Search/@Model.Code">
+                                    </div>
+                                </div>
+                                <div class="sidebox-order_text">
+                                    <table class="table table-head-fixed text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Giá</th>
+                                                <th>Số lượng </th>
+                                                <th>Size</th>
+                                                <th>Topping</th>
+                                                <th>Tổng tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var InvoiceDetail in ViewBag.InvoiceDetails)
+                                            {
+                                                <tr>
+                                                    <td>@InvoiceDetail.ProductName</td>
+                                                    <td>@InvoiceDetail.Price</td>
+                                                    <td>@InvoiceDetail.Quantity</td>
+                                                    <td>@InvoiceDetail.PropertyProduct</td>
+                                                    <td>@InvoiceDetail.OptionProduct</td>
+                                                    <td>@InvoiceDetail.Total.ToString("N0")đ</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h3 style="color:red; text-align:center">Đơn hàng không hợp lệ</h3>
+                <h4 style="text-align:center;"><a href="/">Trở về trang chủ</a></h4>
+            }
+        </div>
+    </div>
+</div>
