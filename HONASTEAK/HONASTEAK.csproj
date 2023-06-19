@@ -185,6 +185,7 @@
     <Compile Include="Areas\Areas\Controllers\ManageProductController.cs" />
     <Compile Include="Areas\Areas\Controllers\ManagePropertyProductController.cs" />
     <Compile Include="Areas\Areas\Controllers\ManageRoleController.cs" />
+    <Compile Include="Areas\Areas\Controllers\ManageStaffController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -2358,6 +2359,7 @@
     <Content Include="Areas\Areas\Views\ManageOptionProduct\Edit.cshtml" />
     <Content Include="Areas\Areas\Views\ManageBlog\Index.cshtml" />
     <Content Include="Areas\Areas\Views\ManageBlog\Edit.cshtml" />
+    <Content Include="Areas\Areas\Views\ManageStaff\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
