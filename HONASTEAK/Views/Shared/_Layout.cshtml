@@ -30,6 +30,19 @@
     <!-- ALTERNATIVE COLORS CSS -->
     <link href="#" id="colors" rel="stylesheet">
     <script src="~/Content/js/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+    function getTotalCart() {
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("GetTotal", "Cart")",
+            success: function (result) {
+                $("#totalCart").html(result.total);
+            }
+        });
+    }
+    getTotalCart();
+    </script>
 
 </head>
 
@@ -38,7 +51,7 @@
     <header class="header clearfix element_to_stick" style="background-color: #689EB8";>
         <div class="container">
             <div id="logo">
-                <a href="~/Content/js/index.html">
+                <a href="@Url.Action("Index","Home")">
                     <img src="~/Content/img/logo.svg" width="140" height="35" alt="" class="logo_normal">
                     <img src="~/Content/img/logo_sticky.svg" width="140" height="35" alt="" class="logo_sticky">
                 </a>
@@ -62,7 +75,7 @@
                     <li class="submenu">
                         <a href="@Url.Action("Index","Home")" class="show-submenu">Home</a>
                     <li class="submenu">
-                        <a href="@Url.Action("Collection","Category")" class="show-submenu">Sản Phẩm</a>
+                        <a href="/Collections/beef-steak" class="show-submenu">Sản Phẩm</a>
                         <ul>
                             <li class="third-level">
                                 <a href="/Collections/beef-steak">BEEF STEAK</a>
@@ -82,7 +95,12 @@
                         <a href="@Url.Action("Index","Blog")" class="show-submenu">Blog</a>
                     </li>
                     <li class="submenu">
-                        <a href="#0" class="show-submenu">Giới Thiệu</a>
+                        <a href="@Url.Action("Index","Cart")" style="color:white">
+                            <div class="cart animated">
+                                <i class="fa fa-shopping-cart"></i> <span id="totalCart">0</span>
+                            </div>
+                        </a>
+                        @*<a href="#0" class="show-submenu">Giới Thiệu</a>*@
                     </li>
                     <li>
                         <a href="@Url.Action("Login","Account")">Đăng Nhập</a>
