@@ -143,19 +143,25 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/Areas/ManageStaff" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Nhân Viên</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             @if (Request.IsAuthenticated)
                             {
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     <a href="/Account/Logout" class="nav-link">
-	                                    <i class="nav-icon fas fa-sign-out-alt" href="javascript:document.getElementById('logoutForm').submit()">Log off</i>
+                                        <i class="nav-icon fas fa-sign-out-alt" href="javascript:document.getElementById('logoutForm').submit()">Log off</i>
                                     </a>
 
                                 }
                             }
 
-                            
+
                         </li>
                     </ul>
                 </nav>

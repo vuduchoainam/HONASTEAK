@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using HONASTEAK.Models.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -30,6 +31,7 @@ namespace HONASTEAK.Models
         public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
 
         public ApplicationDbContext()

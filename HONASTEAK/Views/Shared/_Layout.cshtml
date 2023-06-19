@@ -29,6 +29,7 @@
 
     <!-- ALTERNATIVE COLORS CSS -->
     <link href="#" id="colors" rel="stylesheet">
+    <script src="~/Content/js/jquery.min.js"></script>
 
 </head>
 
@@ -61,38 +62,19 @@
                     <li class="submenu">
                         <a href="@Url.Action("Index","Home")" class="show-submenu">Home</a>
                     <li class="submenu">
-                        <a href="@Url.Action("Index","Product")" class="show-submenu">Sản Phẩm</a>
+                        <a href="@Url.Action("Collection","Category")" class="show-submenu">Sản Phẩm</a>
                         <ul>
                             <li class="third-level">
-                                <a href="#0">SALAD</a>
-                                <ul>
-                                    <li><a href="grid-listing-filterscol.html">List default</a></li>
-                                    <li><a href="grid-listing-filterscol-map.html">List with map</a></li>
-                                    <li><a href="listing-map.html">List side map</a></li>
-                                    <li><a href="grid-listing-filterscol-full-width.html">List full width</a></li>
-                                    <li><a href="grid-listing-filterscol-full-masonry.html">List Masonry Filter</a></li>
-                                    <li><a href="grid-listing-filterscol-delivery.html">List Delivery/Takeaway</a></li>
-                                </ul>
+                                <a href="/Collections/beef-steak">BEEF STEAK</a>
                             </li>
                             <li class="third-level">
-                                <a href="#0">SOUP</a>
-                                <ul>
-                                    <li><a href="detail-restaurant.html">Detail page 1</a></li>
-                                    <li><a href="detail-restaurant-2.html">Detail page 2</a></li>
-                                    <li><a href="detail-restaurant-3.html">Mobile Fixed Booking</a></li>
-                                    <li><a href="detail-restaurant-delivery.html">Delivery/Takeaway</a></li>
-                                    <li><a href="detail-restaurant-4.html">Detail Menu Thumbs</a></li>
-                                    <li><a href="detail-restaurant-5.html">Detail Contact Form</a></li>
-                                </ul>
+                                <a href="/Collections/salad">SALAD</a>
                             </li>
                             <li class="third-level">
-                                <a href="#0">BEEF STEAK</a>
-                                <ul>
-                                    <li><a href="grid-listing-filterscol-map-openstreetmap.html">List with map</a></li>
-                                    <li><a href="listing-map-openstreetmap.html">List side map</a></li>
-                                    <li><a href="grid-listing-filterscol-full-width-openstreetmap.html">List full width</a></li>
-                                    <li><a href="grid-listing-filterscol-full-masonry-openstreetmap.html">List Masonry Filter</a></li>
-                                </ul>
+                                <a href="/Collections/soup">SOUP</a>
+                            </li>
+                            <li class="third-level">
+                                <a href="/Collections/pasta">PASTA</a>
                             </li>
                         </ul>
                     </li>
@@ -114,7 +96,7 @@
                         </ul>
                     </li>
                     <li class="submenu">
-                        <a href="#0" class="show-submenu">Blog</a>
+                        <a href="@Url.Action("Index","Blog")" class="show-submenu">Blog</a>
                     </li>
                     <li class="submenu">
                         <a href="#0" class="show-submenu">Giới Thiệu</a>

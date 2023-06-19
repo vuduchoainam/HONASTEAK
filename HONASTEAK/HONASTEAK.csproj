@@ -179,6 +179,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Areas\AreasAreaRegistration.cs" />
     <Compile Include="Areas\Areas\Controllers\ManageAccountController.cs" />
+    <Compile Include="Areas\Areas\Controllers\ManageBlogController.cs" />
     <Compile Include="Areas\Areas\Controllers\ManageCategoryController.cs" />
     <Compile Include="Areas\Areas\Controllers\ManageOptionProductController.cs" />
     <Compile Include="Areas\Areas\Controllers\ManageProductController.cs" />
@@ -186,11 +187,26 @@
     <Compile Include="Areas\Areas\Controllers\ManageRoleController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Migrations\202306181554549_UpdateTableInvoice.cs" />
+    <Compile Include="Migrations\202306181554549_UpdateTableInvoice.designer.cs">
+      <DependentUpon>202306181554549_UpdateTableInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306181833215_updateBlog.cs" />
+    <Compile Include="Migrations\202306181833215_updateBlog.designer.cs">
+      <DependentUpon>202306181833215_updateBlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306190157217_updateTableOptionP.cs" />
+    <Compile Include="Migrations\202306190157217_updateTableOptionP.designer.cs">
+      <DependentUpon>202306190157217_updateTableOptionP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\ApplicationUser.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
@@ -218,7 +234,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entity\AspNetUserRoles.cs" />
+    <Compile Include="Models\Entity\Blog.cs" />
     <Compile Include="Models\Entity\Booking.cs" />
+    <Compile Include="Models\Entity\CartItem.cs" />
     <Compile Include="Models\Entity\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Entity\Invoice.cs" />
@@ -231,6 +249,7 @@
     <Compile Include="Models\Entity\Staff.cs" />
     <Compile Include="Models\Entity\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CartManager.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +299,7 @@
     <Content Include="Content\js\common_func.js" />
     <Content Include="Content\js\common_scripts.min.js" />
     <Content Include="Content\js\index.html" />
+    <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\switcher.js" />
     <Content Include="Content\layout\Admin\dist\css\adminlte.css" />
     <Content Include="Content\layout\Admin\dist\css\adminlte.min.css" />
@@ -2328,10 +2348,12 @@
     <Content Include="Content\layout\Admin\plugins\summernote\summernote.js.map" />
     <Content Include="Content\layout\Admin\plugins\summernote\summernote.min.js.map" />
     <Content Include="Content\layout\Admin\plugins\toastr\toastr.js.map" />
-    <Content Include="Areas\Areas\Views\ManageOptionProduct\Index.cshtml" />
-    <Content Include="Areas\Areas\Views\ManageOptionProduct\Edit.cshtml" />
     <Content Include="Areas\Areas\Views\ManagePropertyProduct\Index.cshtml" />
     <Content Include="Areas\Areas\Views\ManagePropertyProduct\Edit.cshtml" />
+    <Content Include="Areas\Areas\Views\ManageOptionProduct\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\ManageOptionProduct\Edit.cshtml" />
+    <Content Include="Areas\Areas\Views\ManageBlog\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\ManageBlog\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2384,6 +2406,13 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Category\Collection.cshtml" />
     <Content Include="Views\Home\Collection.cshtml" />
+    <Content Include="Views\Invoice\CheckOut.cshtml" />
+    <Content Include="Views\Invoice\CompleteOrder.cshtml" />
+    <Content Include="Views\Invoice\Search.cshtml" />
+    <Content Include="Views\Shared\CartPartial.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Blog\Readmore.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2391,6 +2420,7 @@
     <Folder Include="Areas\Areas\Views\ManageAccount\" />
     <Folder Include="Areas\Areas\Views\Shared\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -2431,6 +2461,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305271635436_addApplicationUser.resx">
       <DependentUpon>202305271635436_addApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306181554549_UpdateTableInvoice.resx">
+      <DependentUpon>202306181554549_UpdateTableInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306181833215_updateBlog.resx">
+      <DependentUpon>202306181833215_updateBlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306190157217_updateTableOptionP.resx">
+      <DependentUpon>202306190157217_updateTableOptionP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
