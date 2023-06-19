@@ -43,10 +43,10 @@
                     <img src="~/Content/img/logo_sticky.svg" width="140" height="35" alt="" class="logo_sticky">
                 </a>
             </div>
-            <ul id="top_menu">
+            @*<ul id="top_menu">
                 <li><a href="#sign-in-dialog" id="sign-in" class="login">Sign In</a></li>
                 <li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
-            </ul>
+            </ul>*@
             <!-- /top_menu -->
             <a href="#0" class="open_close">
                 <i class="icon_menu"></i><span>Menu</span>
@@ -101,9 +101,20 @@
                     <li class="submenu">
                         <a href="#0" class="show-submenu">Giới Thiệu</a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("Login","Account")">Đăng Nhập</a>
-                    </li>
+                    @if (@User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li><a href="@Url.Action("Index","ManageRole", new { area = "Areas" })">Quản lý admin</a></li>
+                        }
+                        <li><a href="@Url.Action("Logoff","Account")">Đăng Xuất</a></li>
+
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Login","Account")">Đăng Nhập</a></li>
+                    }
+
 
                 </ul>
             </nav>
