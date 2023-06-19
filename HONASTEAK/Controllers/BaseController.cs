@@ -27,10 +27,11 @@ namespace HONASTEAK.Controllers
             {
                 UnitOfWork.Commit();
             }
-            catch
+            catch(Exception ex)
             {
-                UnitOfWork.Rollback();
-                throw;
+                Console.WriteLine(ex.ToString());
+                //UnitOfWork.Rollback();
+                //throw;
             }
         }
         public IEnumerable<T> GetAll()
